@@ -8,6 +8,7 @@ body {
   height: 100vh;
 }
 
+/* This is the box that contains the buttons */
 .container {
   width: 800px;
   max-width: 80%;
@@ -17,6 +18,7 @@ body {
   box-shadow: 0 0 10px 2px;
 }
 
+/* These are the actual buttons */
 .btn-grid {
   display: grid;
   grid-template-columns: repeat(2, auto);
