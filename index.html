@@ -8,18 +8,43 @@
 	<script defer src="index_game.js"></script>
 </head>
 <body>
-	<div class="container">
-		<h1>Hello, Traveller!</h1>
-		<h2>You look lost</h2>
-		<div id="text">How did you stumble upon us today?</div>
-		<div id="option-buttons" class="btn-grid">
-			<button class="btn">Resume</button>
-			<button class="btn">Github</button>
-			<button class="btn">Social Media</button>
-			<button class="btn">Complete Accident</button>
-			<button class="btn">You sent me here, fool</button>
-			<button class="btn">Wait, what?</button>
-		</div>
-	</div>
+	<form name="submit-to-google-sheet" action='homepage.html'>
+		<label for="who">Reveal your identity</label>
+		<br/>
+		<select required id="who" name="visitor" value="Select one">
+			<option value="stranger">Curious Stranger</option>
+			<option value="foe">Foe</option>
+			<option value="friend">Friend</option>
+			<option value="recruiter">Recruiter</option>
+		</select>
+		<br/>
+		<label>What's the secret message?</label>
+		<br/>
+		<textarea name="message" required rows="10" cols="30"></textarea>
+		<br/>
+		<label>Choose one:</label>
+		<br/>
+		<input required type="radio" id="joke" name="joke" value="Memes" /> Memes<br/>
+		<input required type="radio" id="joke" name="joke" value="Dreams" /> Dreams<br/>
+		<input required type="radio" id="joke" name="joke" value="Schemes" /> Secret Schemes<br/>
+		<br/>
+		<button onclick="window.location.href='homepage.html';">Enter Lucy's Website</button>
+	</form>
+	
+	<script>
+		const scriptURL = 'https://script.google.com/macros/s/AKfycbxSI-LOVt9qiwgMwsQj3kb2Nv7SNfCLBIAmttZfZ1GVR2yb9Olh/exec'
+		const form = document.forms['submit-to-google-sheet']
+	  
+		form.addEventListener('submit', e => {
+		  e.preventDefault()
+		  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+			.then(response => console.log('Success!', response))
+			.catch(error => console.error('Error!', error.message))
+		})
+	  </script>
+
+
 </body>
 </html>
+
+<!-- https://github.com/jamiewilson/form-to-google-sheets -->
